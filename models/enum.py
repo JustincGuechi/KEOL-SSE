@@ -10,3 +10,8 @@ class MaintenanceEnum(Enum):
     Imo = 2
     Maintenance = 3
     Vide = 4
+
+class Type_Place(Enum):
+    RAME = 1
+    RAME_IMMOBILISEE = 2
+    NO_RAME = 3

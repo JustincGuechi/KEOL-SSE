@@ -1,7 +1,8 @@
-from Rame import Rame
-from Enum import TypeEnum, MaintenanceEnum
-from Pdf_Reader import PdfReader
-from Excel_maintenance import Excel_Maintenance
+from models.rame import Rame
+from models.enum import TypeEnum, MaintenanceEnum
+from controlers.Pdf_Reader import PdfReader
+from controlers.Excel_maintenance import Excel_Maintenance
+
 def main():
     pdfReadeur = PdfReader('Données sources KDM/KM_parcourus_S44-2024.pdf')
     rames = pdfReadeur.create_rame_list()

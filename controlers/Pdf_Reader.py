@@ -6,8 +6,8 @@
 
 
 import pdfplumber
-from Enum import TypeEnum, MaintenanceEnum
-from Rame import Rame
+from models.enum import TypeEnum, MaintenanceEnum
+from models.rame import Rame
 
 
 class PdfReader:

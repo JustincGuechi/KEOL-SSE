@@ -1,12 +1,7 @@
 import pandas as pd
-from plan import Plan
-from place import Place
-from enum import Enum  # Importation de la classe Enum
-
-class Type_Place(Enum):
-    RAME = 1
-    RAME_IMMOBILISEE = 2
-    NO_RAME = 3
+from models.plan import Plan
+from models.place import Place
+from enum import Type_Place  # Importation de la classe Enum
 
 def charger_excel_et_creer_plan(fichier_excel):
     # Charger le fichier Excel et lire toutes les feuilles du fichier Excel
@@ -34,7 +29,7 @@ def charger_excel_et_creer_plan(fichier_excel):
                         type_place = Type_Place.RAME_IMMOBILISEE
                     else:
                         type_place = Type_Place.RAME
-                    
+
                     #gestion des couleurs LNT
                     if i == 1 or i == 2:
                         couleur = "L"
@@ -44,7 +39,6 @@ def charger_excel_et_creer_plan(fichier_excel):
                         couleur = "T"
                     else:
                         couleur = ""
-                    
 
                     # Créer une instance de Place
                     place = Place(
@@ -62,16 +56,3 @@ def charger_excel_et_creer_plan(fichier_excel):
                     # Ajouter la place à la position (i, j) dans le tableau
                     plan.ajouter_place(i, j, place)
         return plan.places
-
-
-
-# Exemple d'utilisation
-fichier_excel = "data\\20130304_SCH_DEX_Plan de remisage.xlsm"  # Nom du fichier Excel
-
-
-
-# Charger le plan depuis l'Excel
-plan = charger_excel_et_creer_plan(fichier_excel)
-
-# Afficher le plan
-print(plan)
