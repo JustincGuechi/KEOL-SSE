@@ -19,7 +19,7 @@ Ce projet a été réalisé principalement en Python dans le cadre d’un Hackat
 
 ## Installation
 ### Pré-requis
-- Python 3.x (A voir)
+- Python 3.13 (A voir)
 - Bibliothèques Python nécessaires :
   A confirmer
 
