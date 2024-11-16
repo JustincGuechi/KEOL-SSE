@@ -36,8 +36,7 @@ def upload_file():
 
     # Récupérer le paramètre filename depuis la requête
     custom_filename = request.form.get('filename')
-    print(custom_filename)
-    print(custom_filename != "")
+
     if  custom_filename and any(char.isalpha() for char in custom_filename):
         new_filename = f"{custom_filename}.pdf"
     else :

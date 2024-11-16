@@ -5,7 +5,7 @@
 #1003 | L | 836334 | 1731 | OK
 
 
-
+import pdfplumber
 from Enum import TypeEnum, MaintenanceEnum
 from Rame import Rame
 
