@@ -1,7 +1,7 @@
 import pandas as pd
 from models.plan import Plan
 from models.place import Place
-from enum import Type_Place  # Importation de la classe Enum
+from models.enum import Type_Place  # Importation de la classe Enum
 
 def charger_excel_et_creer_plan(fichier_excel):
     # Charger le fichier Excel et lire toutes les feuilles du fichier Excel
@@ -14,11 +14,11 @@ def charger_excel_et_creer_plan(fichier_excel):
         # Créer un plan pour chaque feuille avec le nom de la feuille comme nom de période
         plan = Plan(nom_periode=sheet_name)
 
-        print(str(len(plan.places)))
-        print(str(len(plan.places[0])))
+        # print(str(len(plan.places)))
+        # print(str(len(plan.places[0])))
 
-        for i in range(len(plan.places)):  # `i` représente l'indice de la ligne
-                for j in range(len(plan.places[0])):  # `j` représente l'indice de la colonne
+        for i in range(7):  # `i` représente l'indice de la ligne
+                for j in range(5):  # `j` représente l'indice de la colonne
                     place_id = df.iloc[3+i*4, 5+j*5]
                     #if R7 crée places vides
 
@@ -56,3 +56,5 @@ def charger_excel_et_creer_plan(fichier_excel):
                     # Ajouter la place à la position (i, j) dans le tableau
                     plan.ajouter_place(i, j, place)
         return plan.places
+    
+
