@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import os
 from werkzeug.utils import secure_filename
 import json
+import requests
 
 app = Flask(__name__)
 
@@ -11,6 +12,7 @@ JSON_FOLDER = 'json'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['JSON_FOLDER'] = JSON_FOLDER
+
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -25,7 +27,6 @@ def read_root():
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-
     if 'file' not in request.files:
         return jsonify({"error": "No file part"}), 400
 
@@ -36,12 +37,15 @@ def upload_file():
 
     # Récupérer le paramètre filename depuis la requête
     custom_filename = request.form.get('filename')
+
     if  custom_filename and any(char.isalpha() for char in custom_filename):
         new_filename = f"{custom_filename}.pdf"
     else :
         new_filename = f"renamed_{file.filename}"
 
     if file and allowed_file(file.filename):
+
+        filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], new_filename))
         return jsonify({"message": "File successfully uploaded and renamed", "filename": new_filename}), 200
 
@@ -67,6 +71,6 @@ def get_json():
         data = json.load(json_file)
 
     return jsonify(data), 200
-  
+
 if __name__ == '__main__':
     app.run(debug=True)

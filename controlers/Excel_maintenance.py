@@ -1,6 +1,6 @@
 import pandas as pd
-from Rame import Rame
-from Enum import MaintenanceEnum
+from models.rame import Rame
+from models.enum import MaintenanceEnum
 class Excel_Maintenance:
     def __init__(self, path):
         self.path = path

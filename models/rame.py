@@ -1,4 +1,4 @@
-from Enum import TypeEnum, MaintenanceEnum
+from models.Enum import TypeEnum, MaintenanceEnum
 
 class Rame:
     def __init__ (self, numero, enum_type, enum_maintenance=MaintenanceEnum.Vide, prio=False, position=0):
