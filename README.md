@@ -38,7 +38,8 @@ Ce projet a été réalisé principalement en Python dans le cadre d’un Hackat
 1. Renseignez les fichiers Excel contenant les contraintes et les informations nécessaires (ex. : maintenance, caractéristiques des rames).
 2. Lancez le script principal pour générer la planification :
    ```bash
-   python main.py
+   docker build -t keol-sse .
+   docker run -it --rm -p 5000:5000 keol-sse
    ```
 3. Le fichier Excel final contenant la planification sera généré dans le répertoire de sortie.
 
