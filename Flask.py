@@ -1,14 +1,16 @@
 from flask import Flask, request, jsonify
 import os
 from werkzeug.utils import secure_filename
-import requests
+import json
 
 app = Flask(__name__)
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'xlsx', 'xls'}
+JSON_FOLDER = 'json'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['JSON_FOLDER'] = JSON_FOLDER
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -23,8 +25,6 @@ def read_root():
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
-
-
 
     if 'file' not in request.files:
         return jsonify({"error": "No file part"}), 400
@@ -47,5 +47,26 @@ def upload_file():
 
     return jsonify({"error": "File type not allowed"}), 400
 
+@app.route('/getjson', methods=['GET'])
+def get_json():
+    year = request.args.get('year', type=int)
+    month = request.args.get('month', type=int)
+    day = request.args.get('day', type=int)
+
+    if not all([year, month, day]):
+        return jsonify({"error": "Missing date parameters"}), 400
+
+    json_filename = f"{year}_{month}_{day}.json"
+    print(json_filename)
+    json_filepath = os.path.join(app.config['JSON_FOLDER'], json_filename)
+
+    if not os.path.exists(json_filepath):
+        return jsonify({"error": "File not found"}), 404
+
+    with open(json_filepath, 'r') as json_file:
+        data = json.load(json_file)
+
+    return jsonify(data), 200
+  
 if __name__ == '__main__':
     app.run(debug=True)
