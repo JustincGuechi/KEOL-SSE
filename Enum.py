@@ -8,4 +8,5 @@ class TypeEnum(Enum):
 class MaintenanceEnum(Enum):
     Dx = 1
     Imo = 2
-    Vide = 3
+    Maintenance = 3
+    Vide = 4
