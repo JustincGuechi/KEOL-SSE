@@ -18,3 +18,4 @@ jobs:
       run: docker build -t justinguechi/keol-sse:latest .
     - name: Push the Docker image
       run: docker login -u justinguechi -p ${{secrets.DOCKER_HUB_KEY}}
+           docker push justinguechi/keol-sse:latest
