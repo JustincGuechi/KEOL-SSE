@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import os
 from werkzeug.utils import secure_filename
 import json
-import requests
 
 app = Flask(__name__)
+CORS(app)
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'xlsx', 'xls'}

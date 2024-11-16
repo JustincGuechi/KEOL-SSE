@@ -1,7 +1,7 @@
-pdfplumber
-Flask
-Werkzeug
 numpy
 pandas
 openpyxl
-requests
+pdfplumber
+Flask
+flask_cors
+Werkzeug
