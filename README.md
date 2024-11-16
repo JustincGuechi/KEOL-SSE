@@ -19,7 +19,7 @@ Ce projet a été réalisé principalement en Python dans le cadre d’un Hackat
 
 ## Installation
 ### Pré-requis
-- Python 3.x
+- Python 3.x (A voir)
 - Bibliothèques Python nécessaires :
   A confirmer
 
@@ -54,5 +54,3 @@ Les contributions sont les bienvenues ! Voici comment vous pouvez participer :
 
 ## Remerciements
 Merci à **Keolis** pour leur confiance et à l'équipe du Hackathon pour leur soutien et leurs idées.
-
----
