@@ -25,4 +25,6 @@ class Rame:
         self.prio = prio
     def setMaintenance(self, enum_maintenance):
         self.enum_maintenance = enum_maintenance
+    def setPanto_or_brush(self, panto_or_brush):
+        self.panto_or_brush = panto_or_brush
     

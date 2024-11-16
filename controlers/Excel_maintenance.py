@@ -18,7 +18,7 @@ class Excel_Maintenance:
         self.panto_or_brush = []
         for panto in list_panto_or_brush:
             if isinstance(panto, str):
-                self.panto_or_brush.append(panto.split(" "))
+                self.panto_or_brush.append(int(panto.split(" ")[0]))
 
 
     def setImobilisation(self, rames):
