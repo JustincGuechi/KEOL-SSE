@@ -26,7 +26,7 @@ Ce projet a été réalisé principalement en Python dans le cadre d’un Hackat
 ### Étapes
 1. Clonez ce dépôt :
    ```bash
-   git clone https://github.com/username/keolisse.git
+   git clone https://github.com/JustincGuechi/KEOL-SSE.git
    cd keolisse
    ```
 2. Assurez-vous d'avoir les fichiers Excel de contrainte et de configuration à jour avant d'utiliser l’application.
@@ -53,6 +53,6 @@ Les contributions sont les bienvenues ! Voici comment vous pouvez participer :
 
 
 ## Remerciements
-Un grand merci à **Keolis** pour leur confiance et à l'équipe du Hackathon pour leur soutien et leurs idées.
+Merci à **Keolis** pour leur confiance et à l'équipe du Hackathon pour leur soutien et leurs idées.
 
 ---
