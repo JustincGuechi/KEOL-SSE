@@ -9,6 +9,7 @@ import pdfplumber
 from Enum import TypeEnum, MaintenanceEnum
 from Rame import Rame
 
+
 class PdfReader:
     def __init__(self, chemin_du_pdf):
         self.chemin_du_pdf = chemin_du_pdf
@@ -22,6 +23,7 @@ class PdfReader:
                 texte = page.extract_text()
                 lignes = texte.split('\n')
                 for ligne in lignes:
+
                     # Si la ligne contient un chiffre (pour eviter de prendre en compte les entetes) et la date de fin du document
                     if any(char.isdigit() for char in ligne) and len(ligne) > 10:
                         info = ligne.split(' ', 4)
@@ -47,8 +49,4 @@ class PdfReader:
             rames.append(rame)
 
         return rames
-# Ouvrir le fichier PDF
-# chemin_du_pdf = 'Données sources KDM/KM_parcourus_S44-2024.pdf'
-# pdf_reader = PdfReader(chemin_du_pdf)
-# tableau = pdf_reader.extraire_donnees()
-# print(tableau)
+
