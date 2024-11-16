@@ -2,6 +2,7 @@ from models.plan import Plan
 from models.rame import Rame
 from models.place import Place
 from models.enum import TypeEnum, MaintenanceEnum
+from datetime import datetime
 
 class algo:
     def __init__(self, plan, rames):
@@ -31,5 +32,12 @@ class algo:
 
         # trouver la place avec l'heure de retour la plus tot
         self.plan.places
-
+        min = "03:00:00:00"
+        index = 0
+        for i in range (len(self.plan.places)):
+            if self.plan.places[i].horaire_arrivee != '':
+                if self.plan.places[i].horaire_arrivee < min:
+                    index = i
+                    min = self.plan.places[i].horaire_arrivee
+        
         return self.plan

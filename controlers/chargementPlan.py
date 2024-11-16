@@ -15,7 +15,12 @@ def extraire_heure(date_str):
         for fmt in formats:
             try:
                 dt = datetime.strptime(date_str, fmt)
-                return f"{1 if 0 <= dt.hour < 2 else 0} - {dt.strftime("%H:%M:%S")}"
+                if 1 if 0 <= dt.hour < 2 else 0 :   
+                    dt = dt.replace(day=2)
+                    return dt.strftime("%d:%H:%M:%S")
+                else:
+                    dt = dt.replace(day=1)
+                    return dt.strftime("%d:%H:%M:%S")
             except ValueError:
                 continue
         return ""
@@ -74,12 +79,12 @@ def charger_excel_et_creer_plan(fichier_excel):
 
                     # Créer une instance de Place
                     place = Place(
-                        ligne_id=df.iat[3+i*4, 2+j*5],
-                        place_id=place_id,
-                        horaire_depart=df.iat[4+i*4, 2+j*5],
-                        horaire_arrivee=df.iat[4+i*4, 4+j*5],
-                        horaire_depart_bis=df.iat[5+i*4, 2+j*5],
-                        horaire_arrivee_bis=df.iat[5+i*4, 4+j*5],
+                        ligne_id=str(df.iat[3+i*4, 2+j*5]),
+                        place_id=str(place_id),
+                        horaire_depart=extraire_heure(str(df.iat[4+i*4, 2+j*5])),
+                        horaire_arrivee=extraire_heure(str(df.iat[4+i*4, 4+j*5])),
+                        horaire_depart_bis=extraire_heure(str(df.iat[5+i*4, 2+j*5])),
+                        horaire_arrivee_bis=extraire_heure(str(df.iat[5+i*4, 4+j*5])),
                         type_place=type_place,
                         rame=0, #pas de rame à la lecture
                         couleur=couleur
