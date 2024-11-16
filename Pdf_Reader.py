@@ -29,7 +29,7 @@ class PdfReader:
         return self.tableau
 
 # Ouvrir le fichier PDF
-chemin_du_pdf = 'Données sources KDM/KM_parcourus_S44-2024.pdf'
-pdf_reader = PdfReader(chemin_du_pdf)
-tableau = pdf_reader.extraire_donnees()
-print(tableau)
+# chemin_du_pdf = 'Données sources KDM/KM_parcourus_S44-2024.pdf'
+# pdf_reader = PdfReader(chemin_du_pdf)
+# tableau = pdf_reader.extraire_donnees()
+# print(tableau)
