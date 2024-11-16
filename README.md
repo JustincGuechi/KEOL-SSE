@@ -28,6 +28,7 @@ Ce projet a été réalisé principalement en Python dans le cadre d’un Hackat
    ```bash
    git clone https://github.com/JustincGuechi/KEOL-SSE.git
    cd keolisse
+   pip install -r requirements.txt
    ```
 2. Assurez-vous d'avoir les fichiers Excel de contrainte et de configuration à jour avant d'utiliser l’application.
 
