@@ -10,6 +10,7 @@ def extraire_heure(date_str):
             "%Y-%m-%d %H:%M:%S",  # Format '1900-01-01 01:05:00'
             "%H:%M:%S",           # Format '04:17:00'
             "%Y-%m-%d %H:%M:%S",  # Format '2024-10-30 00:00:00'
+            "%H:%M"               # Format '10:05'
         ]
         
         for fmt in formats:
@@ -77,6 +78,11 @@ def charger_excel_et_creer_plan(fichier_excel):
                     else:
                         couleur = ""
 
+                    #print("ligne", str(df.iat[3+i*4, 2+j*5]))
+                    #print("horaire_depart", str(df.iat[4+i*4, 2+j*5]))
+                    #print("horaire_departcv", extraire_heure(str(df.iat[4+i*4, 2+j*5])))
+                    #print("horaire_arrivee", str(df.iat[4+i*4, 4+j*5]))
+                    #print("heure_arriveecv", extraire_heure(str(df.iat[4+i*4, 4+j*5])))
                     # Créer une instance de Place
                     place = Place(
                         ligne_id=str(df.iat[3+i*4, 2+j*5]),
@@ -87,9 +93,9 @@ def charger_excel_et_creer_plan(fichier_excel):
                         horaire_arrivee_bis=extraire_heure(str(df.iat[5+i*4, 4+j*5])),
                         type_place=type_place,
                         rame=0, #pas de rame à la lecture
-                        couleur=couleur
+                        couleur=couleur 
                     )
-
+                    
                     # Ajouter la place à la position (i, j) dans le tableau
                     plan.ajouter_place(i, j, place)
         return plan

@@ -80,10 +80,7 @@ class algo:
                         departT2 = self.plan.places[i].horaire_depart
                         index2 = i 
         #PROBLEME AVEC LE 9211 qui est a 00:00:00:00
-        print(departT1)
-        print(departT2)
-        print(index1)
-        print(index2)
+        
         
         #on place les rames avec panto ou brush sur les lignes 1 et 2
         self.plan.places[index1].rame=self.rames.pop(0)
@@ -93,17 +90,13 @@ class algo:
 
         #remplir les places avec les rames qui reste en commencant par les rames de type lapin
         self.rames.sort(key=lambda x: x.enum_type.value)
-        print(len(self.plan.places))
-        print(len(self.rames))
-        print(len(tab))
         memoire_tempon = self.rames.copy()
         for rame in memoire_tempon:
-            print(rame.numero)
             for i in range(len(self.plan.places)):
                 if i not in tab:
                     if self.plan.places[i].horaire_depart != '':
                         self.plan.places[i].rame = self.rames.pop(self.rames.index(rame))
-                        print("La rame " + str(rame) + " a ete placee a la place " + str(i))
+                        #print("La rame " + str(rame) + " a ete placee a la place " + str(i))
                         tab.append(i)
                         break
         
@@ -121,4 +114,5 @@ class algo:
         for i in range (len(self.plan.places)):
             if self.plan.places[i].rame == 0 :
                 print("La place " + str(i) + " n'est pas remplie")
+
         return self.plan
