@@ -73,6 +73,7 @@ class algo:
                         self.plan.places[i].rame=self.rames.pop(self.rames.index(rame))
                         tab.append(i)
                         break
+
         #remplie avec les rames qui ont des bruch ou panto sachant qu'il faut au moins une sur ligne_id 1 et 2 et plus grande plage horaire possible
         departT1 = "03:00:00:00"
         index1 = 0

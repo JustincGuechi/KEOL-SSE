@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil - Gestion des Rames</title>
+    <!-- Google Fonts pour une meilleure police -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Image de fond en bandeau -->
+        <div class="image-container">
+            <img src="tram_3.jpg" alt="Rames de Tram" class="background-image">
+        </div>
+
+        <!-- Titre -->
+        <h1 class="title">Gestion du plan de remisage des tramways</h1>
+
+        <!-- Description sous le titre -->
+        <p class="description">Chargez vos fichiers de contraintes Excel.</p>
+
+        <!-- Formulaire pour charger les fichiers Excel -->
+        <form id="upload-form" class="upload-container">
+            <div class="file-input-group">
+                <label for="file-input-1">Maintenance journalière (Obligatoire) :</label>
+                <input type="file" id="file-input-1" accept=".xlsx" required>
+            </div>
+            <div class="file-input-group">
+                <label for="file-input-2">KMs parcourus (Optionnel) :</label>
+                <input type="file" id="file-input-2" accept=".xlsx">
+            </div>
+            <div class="file-input-group">
+                <label for="file-input-3">Template plan de remisage (Optionnel) :</label>
+                <input type="file" id="file-input-3" accept=".xlsx">
+            </div>
+
+            <button type="submit" id="upload-btn">Valider</button>
+        </form>
+
+        <!-- Message d'erreur -->
+        <p id="error-message" class="error-message"></p>
+
+        <!-- Zone de gestion des rames -->
+        <div id="ram-management" class="ram-management">
+            <!-- Ici seront affichées les informations JSON -->
+        </div>
+    </div>
+
+    <!-- Inclusion de JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

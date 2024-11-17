@@ -3,12 +3,14 @@ from flask_cors import CORS
 import os
 from werkzeug.utils import secure_filename
 import json
+from controlers.Json_to_Excel import Json_to_Excel
+
 
 app = Flask(__name__)
 CORS(app)
 
 UPLOAD_FOLDER = 'uploads'
-ALLOWED_EXTENSIONS = {'pdf', 'xlsx', 'xls'}
+ALLOWED_EXTENSIONS = {'pdf', 'xlsx', 'xls','xlsm'}
 JSON_FOLDER = 'json'
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -46,7 +48,6 @@ def upload_file():
 
     if file and allowed_file(file.filename):
 
-        filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], new_filename))
         return jsonify({"message": "File successfully uploaded and renamed", "filename": new_filename}), 200
 
@@ -78,6 +79,19 @@ def get_json():
 
     return jsonify(data), 200
 
+@app.route('/getexcel', methods=['POST'])
+def get_excel():
+    json_data = request.get_json()
 
+    if not json_data:
+        return jsonify({"error": "No JSON data provided"}), 400
+
+    excel = Json_to_Excel('data/~$20130304_SCH_DEX_Plan de remisage copy.xlsm', json_data)
+    path_data = excel.json_to_excel()
+
+    if path_data:
+        return jsonify({"message": "Excel file created successfully", "path": path_data}), 200
+    else:
+        return jsonify({"error": "Failed to create Excel file"}), 500
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
