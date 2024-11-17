@@ -27,7 +27,7 @@ Ce projet a été réalisé principalement en Python dans le cadre d’un Hackat
 1. Clonez ce dépôt :
    ```bash
    git clone https://github.com/JustincGuechi/KEOL-SSE.git
-   cd keolisse
+   cd KEOL-SSE
    pip install -r requirements.txt
    ```
 2. Assurez-vous d'avoir les fichiers Excel de contrainte et de configuration à jour avant d'utiliser l’application.
@@ -39,7 +39,7 @@ Ce projet a été réalisé principalement en Python dans le cadre d’un Hackat
 2. Lancez le script principal pour générer la planification :
    ```bash
    docker pull justinguechi/keol-sse:latest
-   docker run -it --rm -p 5000:5000 keol-sse
+   docker run -it --rm -p 5000:5000 justinguechi/keol-sse:latest
    ```
 3. Le fichier Excel final contenant la planification sera généré dans le répertoire de sortie.
 
