@@ -60,7 +60,6 @@ class algo:
                 self.plan.places[index].rame=self.rames.pop(self.rames.index(rame))
                 tab.append(index)
                 break
-
         # get la liste de rame qui on un type Dx
         list_dx = []
         for rame in self.rames:
@@ -74,7 +73,7 @@ class algo:
                         self.plan.places[i].rame=self.rames.pop(self.rames.index(rame))
                         tab.append(i)
                         break
-                    
+
         #remplie avec les rames qui ont des bruch ou panto sachant qu'il faut au moins une sur ligne_id 1 et 2 et plus grande plage horaire possible
         departT1 = "03:00:00:00"
         index1 = 0

@@ -15,6 +15,7 @@ def main():
 
     algo1 = algo(plan, rames)
     json = algo1.to_json()
+
     algo1.save_json(json)
     
 if __name__ == "__main__":
