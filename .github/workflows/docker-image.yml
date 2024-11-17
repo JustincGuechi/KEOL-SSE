@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Login To Docker
+      run: docker login -u justinguechi -p ${{secrets.DOCKER_HUB_KEY}}
+    - name: Build the Docker image
+      run: docker build -t justinguechi/keol-sse:latest .
+    - name: Push the Docker image
+      run: docker push justinguechi/keol-sse:latest

@@ -1,10 +1,3 @@
-from enum import Enum  # Importation de la classe Enum
-import time
-
-class Type_Place(Enum):
-    RAME = 1
-    RAME_IMMOBILISEE = 2
-    NO_RAME = 3
 
 class Place:
     def __init__(self, ligne_id, place_id, horaire_depart, horaire_arrivee,horaire_depart_bis, horaire_arrivee_bis, type_place, rame, couleur):
@@ -43,6 +36,5 @@ class Place:
         if isinstance(time_obj, time):  # Vérifie si l'objet est bien de type time
             return time_obj.strftime('%H:%M')  # Exemple: '08:30'
         return str(time_obj)  # Si ce n'est pas un objet time, on le convertit en chaîne directement'''
-
 
 
