@@ -1,17 +1,31 @@
 import json
 import pandas as pd
 import shutil
+import os
 
 
 class Json_to_Excel:
     def __init__(self, path, jsons):
         self.path = path
-        self.json = json.loads(jsons)
+        self.json = jsons
         
 
 
     def json_to_excel(self):
         """Convertit les données JSON en un fichier Excel."""
+        # Vérifiez si le fichier existe
+        if not os.path.exists(self.path):
+            raise FileNotFoundError(f"Le fichier {self.path} n'existe pas.")
+
+        # Vérifiez si le fichier est un fichier Excel valide
+        if not self.path.endswith(('.xlsx', '.xlsm', '.xls')):
+            raise ValueError(f"Le fichier {self.path} n'est pas un fichier Excel valide.")
+
+        try:
+            existing_excel = pd.ExcelFile(self.path, engine='openpyxl')
+        except Exception as e:
+            raise ValueError(f"Erreur lors de la lecture du fichier Excel : {e}")
+
         # Créer une copie du fichier Excel existant
         backup_path = self.path.replace('.xlsm', '_backup.xlsm')
         shutil.copyfile(self.path, backup_path)
@@ -28,7 +42,7 @@ class Json_to_Excel:
 
         # Charger le fichier Excel existant
         try:
-            existing_excel = pd.ExcelFile(backup_path, engine='openpyxl')
+            existing_excel = pd.ExcelFile(self.path, engine='openpyxl')
         except FileNotFoundError:
             existing_excel = None
 

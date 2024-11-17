@@ -79,11 +79,13 @@ def get_json():
     return jsonify(data), 200
 
 @app.route('/getexcel', methods=['POST'])
-# Exemple de requête : http://127.0.0.1:5000/getexcel?json={}
 def get_excel():
-    json = request.args.get('json')
+    json_data = request.get_json()
 
-    excel = Json_to_Excel('data/~$20130304_SCH_DEX_Plan de remisage copy.xlsm', json)
+    if not json_data:
+        return jsonify({"error": "No JSON data provided"}), 400
+
+    excel = Json_to_Excel('data/~$20130304_SCH_DEX_Plan de remisage copy.xlsm', json_data)
     path_data = excel.json_to_excel()
 
     if path_data:
