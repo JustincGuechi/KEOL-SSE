@@ -41,21 +41,22 @@ class algo:
                     index = i
                     min = self.plan.places[i].horaire_arrivee
         for rame in self.rames:
-            if rame.enum_type == TypeEnum.Dx and rame.prio == True:
-                self.plan.places[index].rame=self.rames.pop(rame)
+            if rame.enum_maintenance == MaintenanceEnum.Dx and rame.prio == True:
+                self.plan.places[index].rame=self.rames.pop(self.rames.index(rame))
                 tab.append(index)
                 break
         # get la liste de rame qui on un type Dx
         list_dx = []
         for rame in self.rames:
-            if rame.enum_type == TypeEnum.Dx:
+            if rame.enum_maintenance == MaintenanceEnum.Dx:
                 list_dx.append(rame)
         # remplir les places avec les rames de type Dx par la fin en sautant les places deja rempli
-        for i in range (len(self.plan.places), 0, -1):
-            if i not in tab:
-                if self.plan.places[i].horaire_arrivee != '':
-                    for rame in list_dx:
-                        self.plan.places[i].rame=self.rames.pop(rame)
+        for rame in list_dx:
+            for i in range (len(self.plan.places)-1, 0, -1):
+                if i not in tab:
+                    if self.plan.places[i].horaire_arrivee != '':
+                        self.plan.places[i].rame=self.rames.pop(self.rames.index(rame))
                         tab.append(i)
+                        break
 
         return self.plan
