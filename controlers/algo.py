@@ -3,6 +3,7 @@ from models.rame import Rame
 from models.place import Place
 from models.enum import TypeEnum, MaintenanceEnum
 from datetime import datetime
+from datetime import timedelta
 
 class algo:
     def __init__(self, plan, rames):
@@ -17,7 +18,11 @@ class algo:
         self.rames = rames
         self.run()
 
-
+    def soustraction_heure(self, heure1, heure2):
+        heure1 = datetime.strptime(heure1, '%d:%H:%M:%S')
+        heure2 = datetime.strptime(heure2, '%d:%H:%M:%S')
+        return heure1 - heure2
+    
     def run(self):
         list_pop = []
         tab = []
@@ -32,7 +37,6 @@ class algo:
         self.rames.sort(key=lambda x: x.panto_or_brush, reverse=True)
 
         # trouver la place avec l'heure de retour la plus tot
-        self.plan.places
         min = "03:00:00:00"
         index = 0
         for i in range (len(self.plan.places)):
@@ -58,5 +62,52 @@ class algo:
                         self.plan.places[i].rame=self.rames.pop(self.rames.index(rame))
                         tab.append(i)
                         break
+        #remplie avec les rames qui ont des bruch ou panto sachant qu'il faut au moins une sur ligne_id 1 et 2 et plus grande plage horaire possible
+        departT1 = "03:00:00:00"
+        index1 = 0
+        departT2 = "03:00:00:00"
+        index2 = 0
+        for i in range (0,15):
+            print(self.plan.places[i].ligne_id)
+
+            if self.plan.places[i].horaire_arrivee != '' and self.plan.places[i].horaire_depart != '':
+                if self.plan.places[i].ligne_id.startswith('91'):
+                    if self.plan.places[i].horaire_depart < departT1:
+                        departT1 = self.plan.places[i].horaire_depart
+                        index1 = i
+                if self.plan.places[i].ligne_id.startswith('92'):
+                    if self.plan.places[i].horaire_depart < departT2:
+                        departT2 = self.plan.places[i].horaire_depart
+                        index2 = i 
+        #PROBLEME AVEC LE 9211 qui est a 00:00:00:00
+        print(departT1)
+        print(departT2)
+        print(index1)
+        print(index2)
+        
+        #on place les rames avec panto ou brush sur les lignes 1 et 2
+        self.plan.places[index1].rame=self.rames.pop(0)
+        self.plan.places[index2].rame=self.rames.pop(0)
+        tab.append(index1)
+        tab.append(index2)
+
+        #remplir les places avec les rames qui reste en commencant par les rames de type lapin
+        self.rames.sort(key=lambda x: x.enum_type.value)
+        print(len(self.plan.places))
+        print(len(self.rames))
+        print(len(tab))
+        for rame in self.rames:
+            for i in range (len(self.plan.places)):
+                if i not in tab:
+                    if self.plan.places[i].horaire_depart != '':
+                        self.plan.places[i].rame=self.rames.pop(self.rames.index(rame))
+                        print("La rame " + str(rame) + " a ete placee a la place " + str(i))
+                        tab.append(i)
+                        break 
+        #test si toutes les places sont remplies
+        for i in range (len(self.plan.places)):
+            if self.plan.places[i].rame == 0 and self.plan.places[i].ligne_id != 'nan' and self.plan.places[i].ligne_id != 'X':
+                print("La place " + str(i) + " n'est pas remplie")
+        
 
         return self.plan
