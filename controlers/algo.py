@@ -18,13 +18,19 @@ class algo:
                 raise TypeError("The object added must be an instance of the Rame class.")
         self.plan = plan
         self.rames = rames
+        self.ramesmaintence = []
         self.run()
+
+    def set_rames_maintenance(self, rames):
+        self.ramesmaintence = rames
+
 
     def soustraction_heure(self, heure1, heure2):
         heure1 = datetime.strptime(heure1, '%d:%H:%M:%S')
         heure2 = datetime.strptime(heure2, '%d:%H:%M:%S')
         return heure1 - heure2
     
+
     def run(self):
         list_pop = []
         tab = []
@@ -34,6 +40,9 @@ class algo:
                 list_pop.append(self.rames.pop(self.rames.index(rame)))
 
 
+        self.set_rames_maintenance(list_pop)
+
+        # trier les rames par type, prio, panto_or_brush
         self.rames.sort(key=lambda x: x.enum_type.value)
         self.rames.sort(key=lambda x: x.prio, reverse=True)
         self.rames.sort(key=lambda x: x.panto_or_brush, reverse=True)
@@ -122,7 +131,8 @@ class algo:
     def to_json(self):
         result = {
             "nom_periode": self.plan.nom_periode,
-            "places": []
+            "places": [],
+            "maintenances": []
         }
         
         for place in self.plan.places:
@@ -138,12 +148,16 @@ class algo:
             "couleur": place.couleur
             }
             result["places"].append(place_info)
-
+        for rame in self.ramesmaintence:
+            rame_info = {
+                "numero": rame.numero,
+            }
+            result["maintenances"].append(rame_info)
         return result
     
     def save_json(self, data):
         date =(datetime.now() + timedelta(days=1)).strftime('%Y_%m_%d')
-        file_name = self.plan.nom_periode.replace(' ','_')+"_"+date+".json"
+        file_name = date+"_"+self.plan.nom_periode.replace(' ','_')+".json"
         
         output_dir = os.path.join(os.path.dirname(__file__), '..', 'json')
         os.makedirs(output_dir, exist_ok=True)

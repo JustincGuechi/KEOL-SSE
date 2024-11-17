@@ -53,6 +53,7 @@ def upload_file():
     return jsonify({"error": "File type not allowed"}), 400
 
 @app.route('/getjson', methods=['GET'])
+# Exemple de requête : http://127.0.0.1:5000/getjson?year=2024&month=11&day=18
 def get_json():
     year = request.args.get('year', type=int)
     month = request.args.get('month', type=int)
@@ -61,9 +62,13 @@ def get_json():
     if not all([year, month, day]):
         return jsonify({"error": "Missing date parameters"}), 400
 
-    json_filename = f"{year}_{month}_{day}.json"
-    print(json_filename)
-    json_filepath = os.path.join(app.config['JSON_FOLDER'], json_filename)
+    json_files = [f for f in os.listdir(app.config['JSON_FOLDER']) if f.endswith('.json')]
+    matching_files = [f for f in json_files if f.startswith(f"{year}_{month}_{day}")]
+
+    if not matching_files:
+        return jsonify({"error": "File not found"}), 404
+
+    json_filepath = os.path.join(app.config['JSON_FOLDER'], matching_files[0])
 
     if not os.path.exists(json_filepath):
         return jsonify({"error": "File not found"}), 404
