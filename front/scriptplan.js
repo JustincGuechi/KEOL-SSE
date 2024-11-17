@@ -224,6 +224,15 @@ function sendJSON() {
     })
     .catch(error => {
         console.error('Erreur :', error);
+        // telecharge le excel mis de coté
+        const backupUrl = 'http://127.0.0.1:5500/data/20130304_SCH_DEX_Plan_de_remisage.xlsm';
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = backupUrl;
+        a.download = '20130304_SCH_DEX_Plan_de_remisage.xlsm';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a); // Remove the link after clicking
     });
 }
 
