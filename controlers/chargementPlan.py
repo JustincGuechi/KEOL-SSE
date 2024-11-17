@@ -86,7 +86,7 @@ def charger_excel_et_creer_plan(fichier_excel):
                     # Créer une instance de Place
                     place = Place(
                         ligne_id=str(df.iat[3+i*4, 2+j*5]),
-                        place_id=str(place_id),
+                        place_id=extraire_id(place_id),
                         horaire_depart=extraire_heure(str(df.iat[4+i*4, 2+j*5])),
                         horaire_arrivee=extraire_heure(str(df.iat[4+i*4, 4+j*5])),
                         horaire_depart_bis=extraire_heure(str(df.iat[5+i*4, 2+j*5])),
