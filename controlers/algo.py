@@ -4,6 +4,8 @@ from models.place import Place
 from models.enum import TypeEnum, MaintenanceEnum
 from datetime import datetime
 from datetime import timedelta
+import json
+import os
 
 class algo:
     def __init__(self, plan, rames):
@@ -136,5 +138,18 @@ class algo:
             "couleur": place.couleur
             }
             result["places"].append(place_info)
-        
+
         return result
+    
+    def save_json(self, data):
+        date =(datetime.now() + timedelta(days=1)).strftime('%Y_%m_%d')
+        file_name = self.plan.nom_periode.replace(' ','_')+"_"+date+".json"
+        
+        output_dir = os.path.join(os.path.dirname(__file__), '..', 'json')
+        os.makedirs(output_dir, exist_ok=True)
+        output_file = os.path.join(output_dir, file_name)
+
+        with open(output_file, 'w') as f:
+            json.dump(data, f, indent=4)
+
+        return data

@@ -14,7 +14,7 @@ def main():
     plan = charger_excel_et_creer_plan("data/20130304_SCH_DEX_Plan de remisage.xlsm")
 
     algo1 = algo(plan, rames)
-    print(algo1.to_json())
-
+    json = algo1.to_json()
+    algo1.save_json(json)
 if __name__ == "__main__":
     main()
