@@ -1,3 +1,4 @@
+
 from models.place import Place
 class Plan:
     def __init__(self, nom_periode):
