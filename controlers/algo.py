@@ -116,3 +116,25 @@ class algo:
                 print("La place " + str(i) + " n'est pas remplie")
 
         return self.plan
+    
+    def to_json(self):
+        result = {
+            "nom_periode": self.plan.nom_periode,
+            "places": []
+        }
+        
+        for place in self.plan.places:
+            place_info = {
+            "ligne_id": place.ligne_id,
+            "place_id": place.place_id,
+            "horaire_depart": place.horaire_depart,
+            "horaire_depart_bis": place.horaire_depart_bis,
+            "horaire_arrivee": place.horaire_arrivee,
+            "horaire_arrivee_bis": place.horaire_arrivee_bis,
+            "type_place": place.type_place.name,
+            "rame": place.rame.numero if place.rame != 0 else 0,
+            "couleur": place.couleur
+            }
+            result["places"].append(place_info)
+        
+        return result
