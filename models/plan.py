@@ -1,8 +1,8 @@
-from place import Place
+from models.place import Place
 class Plan:
     def __init__(self, nom_periode):
         self.nom_periode = nom_periode  # Nom de la période
-        self.places = [[None for _ in range(5)] for _ in range(7)]  # Tableau 2D de 7 voies et 5 rangements
+        self.places = [] # Liste des places
 
     def ajouter_place(self, ligne, colonne, place):
         """
@@ -10,10 +10,10 @@ class Plan:
         """
         if not isinstance(place, Place):
             raise TypeError("L'objet ajouté doit être une instance de la classe Place.")
-        if ligne >= len(self.places) or colonne >= len(self.places[0]):
-            raise IndexError("Les indices de ligne et colonne sont hors du tableau.")
+        # if ligne >= len(self.places) or colonne >= len(self.places[0]):
+        #     raise IndexError("Les indices de ligne et colonne sont hors du tableau.")
         
-        self.places[ligne][colonne] = place
+        self.places.append(place)
 
     def __repr__(self):
         return f"Plan(nom_periode='{self.nom_periode}', places={self.places})"
