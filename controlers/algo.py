@@ -96,18 +96,29 @@ class algo:
         print(len(self.plan.places))
         print(len(self.rames))
         print(len(tab))
-        for rame in self.rames:
-            for i in range (len(self.plan.places)):
+        memoire_tempon = self.rames.copy()
+        for rame in memoire_tempon:
+            print(rame.numero)
+            for i in range(len(self.plan.places)):
                 if i not in tab:
                     if self.plan.places[i].horaire_depart != '':
-                        self.plan.places[i].rame=self.rames.pop(self.rames.index(rame))
+                        self.plan.places[i].rame = self.rames.pop(self.rames.index(rame))
                         print("La rame " + str(rame) + " a ete placee a la place " + str(i))
                         tab.append(i)
-                        break 
+                        break
+        
+       
+        
+        memoire_tempon_R7 = self.rames.copy()
+        for rame in memoire_tempon_R7:
+            for i in range (5):
+                if i not in tab:
+                    self.plan.places[i].rame = self.rames.pop(self.rames.index(rame))
+                    tab.append(i)
+                    break
+
         #test si toutes les places sont remplies
         for i in range (len(self.plan.places)):
-            if self.plan.places[i].rame == 0 and self.plan.places[i].ligne_id != 'nan' and self.plan.places[i].ligne_id != 'X':
+            if self.plan.places[i].rame == 0 :
                 print("La place " + str(i) + " n'est pas remplie")
-        
-
         return self.plan
