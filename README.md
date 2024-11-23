@@ -38,7 +38,9 @@ Ce projet a été réalisé principalement en Python dans le cadre d’un Hackat
 1. Renseignez les fichiers Excel contenant les contraintes et les informations nécessaires (ex. : maintenance, caractéristiques des rames).
 2. Lancez le script principal pour générer la planification :
    ```bash
-   docker pull justinguechi/keol-sse:latest
+   docker pull justinguechi/keol-sse-backend:latest
+   docker run -it --rm -p 80:80 justinguechi/keol-sse:latest
+   docker pull justinguechi/keol-sse-frontend:latest
    docker run -it --rm -p 5000:5000 justinguechi/keol-sse:latest
    ```
 3. Le fichier Excel final contenant la planification sera généré dans le répertoire de sortie.
