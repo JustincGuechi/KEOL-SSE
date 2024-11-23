@@ -1,6 +1,9 @@
 # Utiliser une image de base Python
 FROM python:3.13-slim
 
+# Ajouter une étiquette pour identifier l'image du backend
+LABEL app=backend
+
 # Installer les dépendances système nécessaires
 RUN apt-get update && apt-get install -y \
     python3-distutils \
