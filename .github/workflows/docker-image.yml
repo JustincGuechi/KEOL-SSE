@@ -4,9 +4,7 @@ on:
   push:
     branches: [ "main" ]
   
-
 jobs:
-
   build:
 
     runs-on: ubuntu-latest
@@ -15,7 +13,11 @@ jobs:
     - uses: actions/checkout@v4
     - name: Login To Docker
       run: docker login -u justinguechi -p ${{secrets.DOCKER_HUB_KEY}}
-    - name: Build the Docker image
-      run: docker build -t justinguechi/keol-sse:latest .
-    - name: Push the Docker image
-      run: docker push justinguechi/keol-sse:latest
+    - name: Build the frontend Docker image
+      run: docker build -t justinguechi/keol-sse-frontend:latest ./keol-sse-frontend
+    - name: Push the frontend Docker image
+      run: docker push justinguechi/keol-sse-frontend:latest
+    - name: Build the backend Docker image
+      run: docker build -t justinguechi/keol-sse-backend:latest ./keol-sse-back-end
+    - name: Push the backend Docker image
+      run: docker push justinguechi/keol-sse-backend:latest

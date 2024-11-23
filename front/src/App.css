@@ -1,0 +1,256 @@
+
+/* Conteneur principal pour centrer la table */
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+/* Tableau global */
+table {
+    border-collapse: separate;
+    border-spacing: 20px; /* Augmente l'espace entre les cellules */
+    width: 90%;
+    margin-top: 20px;
+    table-layout: fixed;
+}
+
+/* Cellules avec des marges */
+td {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 140px;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    position: relative; /* Position pour permettre le placement de badges */
+}
+
+/* Conteneur interne dans chaque cellule */
+.cell-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Badge en haut à droite pour place_id */
+.place-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #ff6666; /* Couleur vive pour attirer l'attention */
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+/* Badge en haut à gauche pour ligne_id */
+.ligne-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: #66b3ff; /* Couleur bleue claire pour différencier */
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Section supérieure (ligne, rame au centre) */
+.top-section {
+    display: flex;
+    justify-content: center; /* Centre la rame */
+    align-items: center; /* Alignement vertical */
+    flex: 3;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Mise en valeur de la rame */
+.rame {
+    font-size: 20px; /* Plus grande police */
+    font-weight: bold;
+    color: #007bff; /* Couleur vive */
+}
+
+/* Section inférieure pour les horaires */
+.bottom-section {
+    display: flex; /* Affiche les horaires côte à côte */
+    flex: 2;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0 10px;
+}
+
+/* Style des horaires */
+.time-box {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #444;
+    margin: 0 5px;
+}
+
+/* Effets au survol */
+td:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+/* Grille des horaires (2x2) */
+.time-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes */
+    gap: 16px; /* Augmente l'espacement entre les blocs */
+    margin-top: 10px; /* Espacement par rapport au haut */
+}
+
+/* Boîtes horaires (inchangé) */
+.time-box {
+    text-align: center;
+    padding: 10px;
+    background-color: #f0f8ff; /* Bleu très clair */
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Grille des horaires (2x2) */
+.time-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes */
+    gap: 16px; /* Augmente l'espacement entre les blocs */
+    margin-top: 10px; /* Espacement par rapport au haut */
+}
+
+/* Boîtes horaires (taille réduite) */
+.time-box {
+    text-align: center;
+    padding: 8px; /* Padding réduit */
+    background-color: #f0f8ff; /* Bleu très clair */
+    color: #333;
+    font-size: 12px; /* Taille de police légèrement réduite */
+    font-weight: bold;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Style de la barre de navigation */
+nav {
+    background-color: #007bff; /* Couleur vive pour correspondre à la DA */
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Prend toute la largeur */
+    position: fixed; /* Fixe en haut de la page */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Au-dessus des autres éléments */
+}
+
+nav a {
+    float: left;
+    display: block;
+    color: #fff; /* Texte blanc pour contraste */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #0056b3; /* Couleur plus foncée au survol */
+    color: #fff;
+}
+
+/* Style du conteneur principal */
+main {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 80px 20px 20px 20px; /* Ajuste la marge pour éviter le chevauchement avec le header */
+}
+
+/* Style du pied de page */
+footer {
+    background-color: #007bff; /* Couleur vive pour correspondre à la DA */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%; /* Prend toute la largeur */
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px; /* Taille de police ajustée */
+    z-index: 1000; /* Au-dessus des autres éléments */
+}
+
+/* Style des en-têtes */
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style des tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+td {
+    background-color: #fff;
+}
+
+/* Style des boutons */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
