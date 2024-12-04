@@ -1,4 +1,4 @@
-# KEOL-SSE (KEOLÏSSE)
+# KEOL-SSE
 
 ## Description
 **KEOLÏSSE** est une application conçue pour automatiser la planification de la flotte de tramway de la ville de Dijon. Elle permet, à partir de fichiers Excel renseignant diverses contraintes (maintenance des rames, équipements spécifiques tels que les brosses et pantos, etc.), ainsi que les particularités des journées/périodes, de produire un fichier Excel final contenant : 
